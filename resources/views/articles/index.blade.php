@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             @foreach($articles as $article)
-                <div class="col-md-4">
+                <div class="col-md-4 w-50">
                     <div class="card mb-4 shadow-sm bg-white">
                         <div class="card-body">
                             <h5 class="card-title text-center">{{ $article->title }}</h5>

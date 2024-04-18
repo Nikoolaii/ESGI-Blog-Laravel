@@ -10,8 +10,8 @@
                 <input type="text" name="title" id="title" class="form-control">
             </div>
             <div class="form-group">
-                <label for="content">Content</label>
-                <textarea name="content" id="content" class="form-control" rows="5"></textarea>
+                <label for="contentArticles">Content</label>
+                <textarea name="contentArticles" id="contentArticles" class="form-control" rows="5"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Create</button>
         </form>

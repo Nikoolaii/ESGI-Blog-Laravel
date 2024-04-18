@@ -21,6 +21,23 @@ class ArticlesController extends Controller
         return view('articles.create');
     }
 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required',
+            'contentArticles' => 'required'
+        ]);
+
+        $article = new Articles();
+        $article->title = $request->title;
+        $article->content = $request->contentArticles;
+        $article->user_id = auth()->user()->id;
+        $article->slug = \Str::slug($request->title);
+        $article->save();
+
+        return redirect()->route('admin.index');
+    }
+
     public function show($id)
     {
         $article = Articles::find($id);
@@ -33,19 +50,18 @@ class ArticlesController extends Controller
         return view('articles.edit', compact('article'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Articles $article)
     {
         $request->validate([
             'title' => 'required',
-            'content' => 'required'
+            'articleContent' => 'required'
         ]);
 
-        $article = Articles::find($id);
         $article->title = $request->title;
-        $article->content = $request->content;
+        $article->content = $request->articleContent;
         $article->save();
 
-        return redirect()->route('articles.index');
+        return redirect()->route('admin.index');
     }
 
     public function destroy($id)
@@ -53,6 +69,6 @@ class ArticlesController extends Controller
         $article = Articles::find($id);
         $article->delete();
 
-        return redirect()->route('articles.index');
+        return redirect()->route('admin.index');
     }
 }
